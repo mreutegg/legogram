@@ -26,13 +26,12 @@ def update_handler(client, update, users, chats):
                 text = message.message
                 user = users[message.from_id].first_name
                 if user == 'IFTTT' and text.startswith('lego-sorter:'):
-                    print(text)
                     log.write(text)
                     log.write('\n')
                     log.flush()
 
 
-with open('command.log', 'a') as log:
+with open('/home/pi/legogram/command.log', 'a') as log:
     c = Client("lego-sorter")
     c.set_update_handler(update_handler)
     c.start()
